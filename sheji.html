@@ -44,6 +44,15 @@
             top: 10px;
             right: 10px;
         }
+        .end-game-button {
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 10px 20px;
+            font-size: 20px;
+            cursor: pointer; /* 鼠标指针变为手型 */
+        }
         .start-screen, .end-screen {
             position: absolute;
             top: 0;
@@ -75,6 +84,7 @@
         <div class="score">分数: 0</div>
         <div class="timer">时间: 30</div>
         <div class="target"></div>
+        <button class="end-game-button" onclick="endGameEarly()">结束游戏</button>
     </div>
     <!-- 开始屏幕 -->
     <div class="start-screen">
@@ -150,6 +160,12 @@
             endScreen.style.display = 'flex'; // 显示结束屏幕
             localStorage.setItem('lastScore', score); // 保存当前分数到localStorage
             lastScore = score; // 更新上次的分数
+        }
+
+        // 中途结束游戏
+        function endGameEarly() {
+            clearInterval(gameInterval); // 停止计时器
+            endGame(); // 结束游戏
         }
 
         // 重置游戏
